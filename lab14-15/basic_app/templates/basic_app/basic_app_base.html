@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Base</title>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-static-top">
+    <ul class="nav navbar-nav">
+        <li><a class="navbar-link" href="{% url 'index' %}">Нүүр</a></li>
+        <li><a class="navbar-link" href="{% url 'basic_app:list' %}">Комеди клубууд</a></li>
+        <li><a class="navbar-link" href="{% url 'basic_app:create' %}">Шинэ клуб</a></li>
+        <li><a class="navbar-link" href="{% url 'hello_django' %}">Hello View</a></li>
+        <li><a class="navbar-link" href="{% url 'admin:index' %}">Админ</a></li>
+    </ul>
+</nav>
+<div class="container">
+    {% block body_block %}
+    {% endblock %}
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+{% extends "basic_app/basic_app_base.html" %}
+{% block body_block %}
+<div class="jumbotron">
+    <h2>Клубын талаар дэлгэрэнгүй</h2>
+    <p><strong>Нэр:</strong> {{ clubDetails.name }}</p>
+    <p><strong>Хаяг:</strong> {{ clubDetails.location }}</p>
+
+    <a class="btn btn-default" href="{% url 'basic_app:list' %}">Жагсаалт руу буцах</a>
+</div>
+
+<h3 class="page-header">Жүжигчид</h3>
+<div class="row">
+    {% for comedian in clubDetails.clubs.all %}
+        <div class="col-sm-6 col-md-4" style="margin-bottom: 20px;">
+            <div class="thumbnail" style="margin-bottom: 0; box-shadow: 0 1px 3px rgba(0,0,0,.12);">
+                {% if comedian.image %}
+                    <a href="{{ comedian.image.url }}" target="_blank" rel="noopener">
+                        <img src="{{ comedian.image.url }}" class="img-responsive center-block" alt="{{ comedian.name }}"
+                             style="max-height: 220px; width: auto; object-fit: cover;">
+                    </a>
+                {% else %}
+                    <div class="text-center text-muted" style="padding: 48px 12px; background: #f5f5f5;">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true" style="font-size: 48px;"></span>
+                        <p style="margin-top: 8px; margin-bottom: 0;">Зураг байхгүй</p>
+                    </div>
+                {% endif %}
+                <div class="caption">
+                    <h4 style="margin-top: 0;">{{ comedian.name }}</h4>
+                    <p class="text-muted" style="margin-bottom: 0;">Нас: {{ comedian.age }}</p>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <div class="col-xs-12">
+            <p class="lead text-muted">Энэ клубт бүртгэлтэй жүжигчин алга.</p>
+        </div>
+    {% endfor %}
+</div>
+
+<div style="margin-top: 16px; margin-bottom: 24px;">
+    <a class="btn btn-warning" href="{% url 'basic_app:update' pk=clubDetails.pk %}">Засах</a>
+    <a class="btn btn-danger" href="{% url 'basic_app:delete' pk=clubDetails.pk %}">Устгах</a>
+</div>
+{% endblock %}
