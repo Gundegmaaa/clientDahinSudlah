@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 9 - Branch & Worker</title>
+</head>
+<body>
+    <h1>Lab 9: Branch and Worker Management</h1>
+    <nav>
+        <a href="{% url 'branch_app:branch_list' %}">Branches</a> |
+        <a href="{% url 'worker_app:worker_list' %}">Workers</a>
+    </nav>
+    <hr>
+    {% block content %}{% endblock %}
+</body>
+</html>
