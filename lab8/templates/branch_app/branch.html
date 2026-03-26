@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Branch</title>
+</head>
+<body>
+  <h3>Branch</h3>
+  <form method="POST" action="create/">
+    {% csrf_token %}
+    <input type="text" name="txtBranch" placeholder="Enter branch name">
+    <input type="submit" value="Add Branch">
+  </form>
+  <br>
+  {% if branches %}
+  <table border="1">
+    <tr>
+      <th>Салбарын нэр</th>
+      <th>Үйлдэл</th>
+    </tr>
+    {% for branch in branches %}
+    <tr>
+      <td>{{ branch.bname }}</td>
+      <td>
+        <a href="/salbar/edit/{{ branch.id }}/">Засах</a>
+        <a href="/salbar/delete/{{ branch.id }}/">Устгах</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p>No branches found!!!</p>
+  {% endif %}
+  <a href="/">Back</a>
+</body>
+</html>
+

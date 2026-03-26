@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worker Edit</title>
+</head>
+<body>
+  <h3>Worker Edit</h3>
+  <form method="POST" action="">
+    {% csrf_token %}
+    <input type="text" name="txtWorker" value="{{ worker.wname }}">
+    <select name="branch_id" required>
+      {% for branch in branches %}
+      <option value="{{ branch.id }}" {% if worker.branch.id == branch.id %}selected{% endif %}>
+        {{ branch.bname }}
+      </option>
+      {% endfor %}
+    </select>
+    <input type="submit" value="Edit Worker">
+  </form>
+  <br>
+  <a href="/worker/">Back</a>
+</body>
+</html>
+
