@@ -10,6 +10,8 @@ urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('hello/', views.HelloDjangoView.as_view(), name='hello_django'),
     path('basic_app/', include('basic_app.urls')),
+    path('logout/', views.user_logout, name='logout'),
+    path('special/', views.special, name='special'),
 ]
 
 if settings.DEBUG:

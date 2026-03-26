@@ -12,7 +12,15 @@
         <li><a class="navbar-link" href="{% url 'basic_app:list' %}">Комеди клубууд</a></li>
         <li><a class="navbar-link" href="{% url 'basic_app:create' %}">Шинэ клуб</a></li>
         <li><a class="navbar-link" href="{% url 'hello_django' %}">Hello View</a></li>
+        <li><a class="navbar-link" href="{% url 'special' %}">Special</a></li>
         <li><a class="navbar-link" href="{% url 'admin:index' %}">Админ</a></li>
+        <li><a class="navbar-link" href="{% url 'basic_app:profile' %}">Профайл</a></li>
+        <li><a class="navbar-link" href="{% url 'basic_app:register' %}">Бүртгүүлэх</a></li>
+        {% if user.is_authenticated %}
+            <li><a class="navbar-link" href="{% url 'logout' %}">Гарах</a></li>
+        {% else %}
+            <li><a class="navbar-link" href="{% url 'basic_app:user_login' %}">Нэвтрэх</a></li>
+        {% endif %}
     </ul>
 </nav>
 <div class="container">

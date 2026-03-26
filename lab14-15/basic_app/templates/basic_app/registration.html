@@ -1,0 +1,20 @@
+{% extends "basic_app/basic_app_base.html" %}
+{% block body_block %}
+<div class="jumbotron">
+    {% if registered %}
+        <h2>Бүртгүүлсэнд баярлалаа.</h2>
+        <p><a class="btn btn-primary" href="{% url 'basic_app:user_login' %}">Нэвтрэх</a></p>
+    {% else %}
+        <h2>Бүртгүүлэх</h2>
+        <p class="text-muted">Дараах маягтыг бөглөнө үү.</p>
+
+        <form enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            {{ user_form.as_p }}
+            {{ profile_form.as_p }}
+            <input type="submit" class="btn btn-success" value="Бүртгүүлэх">
+        </form>
+    {% endif %}
+</div>
+{% endblock %}
+
