@@ -1,4 +1,5 @@
 {% extends "news_app/base.html" %}
+{% load tz %}
 
 {% block title %}Мэдээ устгах{% endblock %}
 
@@ -7,7 +8,7 @@
 
   <div class="card">
     <p><strong>{{ news.title }}</strong> мэдээг устгах уу?</p>
-    <p class="muted">Төрөл: {{ news.category }} · Огноо: {{ news.created_at|date:"Y-m-d H:i" }}</p>
+    <p class="muted">Төрөл: {{ news.category }} · Огноо: {{ news.created_at|localtime|date:"Y-m-d H:i" }}</p>
 
     <form method="post" class="actions">
       {% csrf_token %}

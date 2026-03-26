@@ -1,4 +1,5 @@
 {% extends "news_app/base.html" %}
+{% load tz %}
 
 {% block title %}Мэдээний жагсаалт{% endblock %}
 
@@ -20,7 +21,7 @@
           <tr>
             <td>{{ n.title }}</td>
             <td>{{ n.category }}</td>
-            <td>{{ n.created_at|date:"Y-m-d H:i" }}</td>
+            <td>{{ n.created_at|localtime|date:"Y-m-d H:i" }}</td>
             <td>
               <div class="actions">
                 <a href="{% url 'news_update' n.pk %}">Засах</a>
