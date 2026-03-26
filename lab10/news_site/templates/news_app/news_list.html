@@ -1,0 +1,40 @@
+{% extends "news_app/base.html" %}
+
+{% block title %}Мэдээний жагсаалт{% endblock %}
+
+{% block content %}
+  <h2>Нэмсэн мэдээнүүд</h2>
+
+  {% if news_items %}
+    <table>
+      <thead>
+        <tr>
+          <th>Гарчиг</th>
+          <th>Төрөл</th>
+          <th>Огноо</th>
+          <th>Үйлдэл</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for n in news_items %}
+          <tr>
+            <td>{{ n.title }}</td>
+            <td>{{ n.category }}</td>
+            <td>{{ n.created_at|date:"Y-m-d H:i" }}</td>
+            <td>
+              <div class="actions">
+                <a href="{% url 'news_update' n.pk %}">Засах</a>
+                <a class="btn-danger" href="{% url 'news_delete' n.pk %}">Устгах</a>
+              </div>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <div class="card">
+      <div>Одоогоор мэдээ алга.</div>
+      <div class="muted">Эндээс эхэлж болно: <a href="{% url 'news_create' %}">мэдээ нэмэх</a></div>
+    </div>
+  {% endif %}
+{% endblock %}

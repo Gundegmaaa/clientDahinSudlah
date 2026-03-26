@@ -1,0 +1,25 @@
+{% extends "news_app/base.html" %}
+
+{% block title %}
+  {% if mode == "update" %}Мэдээ засах{% else %}Мэдээ нэмэх{% endif %}
+{% endblock %}
+
+{% block content %}
+  <h2>
+    {% if mode == "update" %}Мэдээ засах{% else %}Мэдээ нэмэх{% endif %}
+  </h2>
+
+  <form method="post" class="card">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="actions">
+      <button class="btn" type="submit">{% if mode == "update" %}Хадгалах{% else %}Нэмэх{% endif %}</button>
+      <a class="btn" href="{% url 'news_list' %}">Буцах</a>
+    </div>
+    {% if mode == "update" %}
+      <div class="muted" style="margin-top: 10px;">
+        Үүссэн огноо (readonly): {{ news.created_at|date:"Y-m-d H:i" }}
+      </div>
+    {% endif %}
+  </form>
+{% endblock %}
